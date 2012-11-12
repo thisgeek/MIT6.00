@@ -15,7 +15,7 @@ def fill(length, val):
 # Candidate for tree search abstraction
 def packs(n, co = [6, 9, 20]):
     coeffs = list(co)
-    coeffs.sort() # coeffs must be in orders for efficient retrieval
+    coeffs.sort() # coeffs must be in order for efficient retrieval
     log("n:", n)
 
     # When n is smaller than the smallest coeff, no solution exists
@@ -43,8 +43,7 @@ def packs(n, co = [6, 9, 20]):
         if quotient < 1:
             continue
 
-        # If n isn't, try all zero or more multiples of largest up to
-        # the quotient
+        # Try all zero or more multiples of largest up to the quotient
         while quotient > -1:
             remaining = n - quotient * largest
             quotient = quotient - 1
