@@ -2,18 +2,16 @@
 
 import logging
 
-def isInt(x):
-    return x % 1 == 0
-
 def log(*args):
     #print (' '.join(map(str, args)))
-    logging.info(' '.join(map(str, args)))
+    #logging.info(' '.join(map(str, args)))
+    pass
 
 def fill(length, val):
     return [val for i in range(length)]
 
 # Candidate for tree search abstraction
-def packs(n, co = [6, 9, 20]):
+def packs(n, co = (6, 9, 20)):
     coeffs = list(co)
     coeffs.sort() # coeffs must be in order for efficient retrieval
     log("n:", n)
@@ -65,13 +63,33 @@ def packs(n, co = [6, 9, 20]):
 
     return answer
 
+def largestImpossibleTotal(tup):
+    largest = 1
+    i = 1
+    consec = 0
+    while consec < tup[0] or i > 1000:
+        answer = packs(i, tup)
+        if not(answer):
+            print i-consec," +",consec,"failed"
+            largest = i
+            consec = 0
+        else:
+            print i-consec," +",consec,"succeeded"
+            consec = consec + 1
+        i = i + 1
+    assert i <= 1000 # If we got to 1000 iterations, throw an exception
+    print "Stopped looking after",i-1
+    return largest
 
 # Execute
 def printPacks(n):
-    print n,"\n",packs(n),"\n"
+    print packs(n),"\n"
 
 logging.getLogger().setLevel(logging.INFO)
 
-map(lambda x: printPacks(x), [
-    15, 16, 40, 49, 50, 51, 52, 53, 54, 55
-])
+#map(lambda x: printPacks(x), range(50,65))
+
+tup = (6, 9, 20)
+n = largestImpossibleTotal(tup)
+print "For these coeffs:",tup
+print "Largest number of McNuggets that cannot be bought in exact quantity:",n
