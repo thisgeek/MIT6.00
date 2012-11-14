@@ -30,16 +30,16 @@ def isPrime(x, by="byHalf"):
 
 def nthPrime(n):
     while len(primes) < n:
-        last = primes[len(primes) - 1]
+        last = primes[-1]
         candidate = last + 2 # Need only try odds
         while not(isPrime(candidate, "byKnownPrimes")):
-            candidate = candidate + 2
+            candidate += 2
         assert isPrime(candidate)
         primes.append(candidate)
     return primes[n - 1]
 
 # Log
-from math import *
+from math import log
 
 def sigmaLnPrimes(n):
     i = primes.index(n) - 1
@@ -47,25 +47,25 @@ def sigmaLnPrimes(n):
 
 def printRatio(n):
     sum = sigmaLnPrimes(n)
-    print "sum:",sum,"| n:",n,"| ratio:",sum/n
+    print "sum: {} | n: {} | ratio: {}".format(sum, n, sum/n)
 
 # Execute
 
 nthPrime(5000)
-map(lambda x: printRatio(x), [
-    primes[10],
-    primes[100],
-    primes[200],
-    primes[300],
-    primes[400],
-    primes[500],
-    primes[600],
-    primes[700],
-    primes[800],
-    primes[900],
-    primes[999],
-    primes[2000],
-    primes[3000],
-    primes[4000],
-    primes[4999]
+map(lambda x: printRatio(primes[x]), [
+    10,
+    100,
+    200,
+    300,
+    400,
+    500,
+    600,
+    700,
+    800,
+    900,
+    999,
+    2000,
+    3000,
+    4000,
+    4999
 ])
