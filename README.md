@@ -1,3 +1,5 @@
+This repository has moved to <https://codeberg.org/thisgeek/MIT6.00>.
+
 My solutions to these [assignments][2] from [Introduction to Computer
 Science and Programming][1].
 
